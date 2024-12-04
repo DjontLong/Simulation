@@ -1,0 +1,20 @@
+simulation/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/example/simulation/
+│   │   │       ├── entities/   # Сущности и объекты (Entity, Creature и их наследники)
+│   │   │       ├── map/        # Класс GameMap
+│   │   │       ├── simulation/ # Логика симуляции (Simulation, Actions)
+│   │   │       └── App.java    # Точка входа
+│   │   └── resources/          # Ресурсы, например, для JavaFX
+│   └── test/
+│       └── java/
+│           └── com/example/simulation/ # Тесты
+├── pom.xml                      # Конфигурация Maven
+└── README.md                    # Описание проекта
+
+public: Для открытых API или библиотек, которые должны быть доступны везде.
+private: Для скрытия данных, инкапсуляции, когда доступ извне не требуется.
+protected: Для наследования, когда подклассы должны видеть или изменять данные.
+package-private: Для классов и методов, используемых только внутри пакета.
