@@ -1,7 +1,7 @@
 package org.simulation.project.entities;
 
 public abstract class Entity {
-    protected Coordinates coordinates;
+    public Coordinates coordinates;
 
     public Entity(Coordinates coordinates) {
         this.coordinates = coordinates;

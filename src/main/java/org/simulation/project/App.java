@@ -1,13 +1,16 @@
 package org.simulation.project;
 
-/**
- * Hello world!
- *
- */
-public class App 
+import org.simulation.project.map.GameMap;
+
+public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        GameMap gameMap = new GameMap();
+        gameMap.setupDefaultEntityPositions();
+
+        gameMap.render();
+
+        int a = 123;
     }
 }

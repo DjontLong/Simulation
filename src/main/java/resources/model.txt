@@ -18,3 +18,20 @@ public: Для открытых API или библиотек, которые д
 private: Для скрытия данных, инкапсуляции, когда доступ извне не требуется.
 protected: Для наследования, когда подклассы должны видеть или изменять данные.
 package-private: Для классов и методов, используемых только внутри пакета.
+
+public void renderMap() {
+    for (int y = 0; y < mapHeight; y++) {
+        for (int x = 0; x < mapWidth; x++) {
+            Coordinates coordinates = new Coordinates(x, y);
+            Entity entity = getEntityAt(coordinates);
+            if (entity != null) {
+                // Выводим символ, который будет представлять сущность
+                System.out.print(entity.getClass().getSimpleName().charAt(0) + " ");
+            } else {
+                // Пустая клетка
+                System.out.print(". ");
+            }
+        }
+        System.out.println();
+    }
+}
