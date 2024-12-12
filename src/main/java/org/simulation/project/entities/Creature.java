@@ -1,10 +1,12 @@
 package org.simulation.project.entities;
 
+import org.simulation.project.map.GameMap;
+
+import java.util.*;
+
 public abstract class Creature extends Entity {
-    // имеет скорость (сколько клеток может пройти за 1 ход)
-    // количество HP
-    protected int hp; // Здоровье
-    protected int speed; // Скорость
+    protected int hp;
+    protected int speed;
 
     public Creature(Coordinates coordinates, int hp, int speed) {
         super(coordinates);
@@ -12,17 +14,41 @@ public abstract class Creature extends Entity {
         this.speed = speed;
     }
 
-    public int getHp() {
-        return hp;
+    // Алгоритм BFS для поиска ближайшего объекта
+    public Coordinates bfs(GameMap gameMap, Class<? extends Entity> targetClass) {
+        Queue<Coordinates> queue = new LinkedList<>();
+        Set<Coordinates> visited = new HashSet<>();
+        queue.add(coordinates);
+        visited.add(coordinates);
+
+        int[] dx = {-1, 1, 0, 0}; // Направления по оси X
+        int[] dy = {0, 0, -1, 1}; // Направления по оси Y
+
+        while (!queue.isEmpty()) {
+            Coordinates current = queue.poll();
+            for (int i = 0; i < 4; i++) {
+                int nx = current.getX() + dx[i];
+                int ny = current.getY() + dy[i];
+
+                // Проверка на выход за пределы карты
+                if (nx >= 0 && nx < gameMap.getWidth() && ny >= 0 && ny < gameMap.getHeight()) {
+                    Coordinates next = new Coordinates(nx, ny);
+                    if (!visited.contains(next)) {
+                        visited.add(next);
+                        Entity entity = gameMap.getEntity(next);
+
+                        // Если найден нужный объект, возвращаем его координаты
+                        if (entity != null && targetClass.isInstance(entity)) {
+                            return next;
+                        }
+
+                        queue.add(next);
+                    }
+                }
+            }
+        }
+        return null; // Если не нашли
     }
 
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public abstract void makeMove();
+    public abstract void makeMove(GameMap gameMap);
 }

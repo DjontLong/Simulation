@@ -1,7 +1,7 @@
 package org.simulation.project.entities;
 
 public abstract class Entity {
-    public Coordinates coordinates;
+    protected Coordinates coordinates;
 
     public Entity(Coordinates coordinates) {
         this.coordinates = coordinates;
@@ -14,4 +14,6 @@ public abstract class Entity {
     public void setCoordinates(Coordinates coordinates) {
         this.coordinates = coordinates;
     }
+
+    public abstract String getSymbol(); // Символ для отрисовки
 }

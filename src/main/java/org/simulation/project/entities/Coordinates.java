@@ -3,7 +3,7 @@ package org.simulation.project.entities;
 import java.util.Objects;
 
 public class Coordinates {
-    protected int x, y; // Координаты объекта
+    private int x, y; // Координаты объекта
 
     public Coordinates(int x, int y) {
         this.x = x;
@@ -34,5 +34,13 @@ public class Coordinates {
         int result = x;
         result = 31 * result + y;
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Coordinates{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }
